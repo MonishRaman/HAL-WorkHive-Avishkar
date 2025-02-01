@@ -17,6 +17,7 @@ import { JobApplicationsPage } from './pages/employee/JobApplicationsPage';
 import { ProfilePage } from './pages/shared/ProfilePage';
 import { ChangePasswordPage } from './pages/shared/ChangePasswordPage';
 import { useAuthStore } from './store/authStore';
+import FloorPlan from './components/FloorPlan';
 
 function App() {
   const { user } = useAuthStore();
@@ -38,7 +39,10 @@ function App() {
             <Route path="projects" element={<ProjectsPage />} />
             <Route path="projects/:id" element={<ProjectDetailsPage />} />
             <Route path="documents" element={<DocumentsPage />} />
-            <Route path="office-layout" element={<OfficeLayoutPage />} />
+            {/* Updated Office Layout Page */}
+            <Route path="office-layout" element={<OfficeLayoutPage />}>
+              <Route path="floor-plan" element={<FloorPlan />} />
+            </Route>
           </Route>
 
           {/* Employee Routes */}
@@ -50,7 +54,10 @@ function App() {
             <Route path="projects" element={<ProjectsPage />} />
             <Route path="projects/:id" element={<ProjectDetailsPage />} />
             <Route path="jobs" element={<JobApplicationsPage />} />
-            <Route path="office-layout" element={<OfficeLayoutPage />} />
+            {/* Updated Office Layout Page */}
+            <Route path="office-layout" element={<OfficeLayoutPage />}>
+              <Route path="floor-plan" element={<FloorPlan />} />
+            </Route>
           </Route>
         </Route>
 

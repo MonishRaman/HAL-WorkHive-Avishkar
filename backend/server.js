@@ -3,6 +3,7 @@ const cors = require('cors');
 const { Sequelize } = require('sequelize');
 const dotenv = require('dotenv');
 const employeeRoutes = require('./routes/employeeRoutes'); // Correct path to routes
+const seatRoutes = require('./routes/seatRoutes'); // Import the seatRoutes
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -22,9 +23,6 @@ const sequelize = new Sequelize({
   database: process.env.DB_NAME, // Set from .env
   logging: false, // Optional, set to true for detailed SQL logging
 });
-
-// Import models after initializing Sequelize
-const { Employee } = require('./models'); // Ensure models are loaded after sequelize
 
 // Check database connection
 sequelize.authenticate()
@@ -46,6 +44,7 @@ sequelize.sync()
 
 // Routes
 app.use('/api/employees', employeeRoutes); // Use employee routes
+app.use('/api', seatRoutes); // Use seat routes
 
 // Set up the server to listen on the port defined in the environment variable or fallback to 5000
 const PORT = process.env.PORT || 5000;
