@@ -12,7 +12,7 @@ WorkHive is an AI-powered office seat planning and management system designed to
 - **Energy Optimization (Optional)** – Predicts power usage based on occupancy trends.
 
   ### **Demo**  
-🔗 [Live Demo of AgroSphere](https://workhiveapplication.netlify.app/)   
+🔗 [Live Demo of WorkHive](https://workhiveapplication.netlify.app/)   
 
 ---
 
