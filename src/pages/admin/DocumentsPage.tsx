@@ -30,8 +30,7 @@ export const DocumentsPage: React.FC = () => {
       items: [
         { name: 'Office Supply Inventory', url: 'https://coefficient.io/wp-content/uploads/2023/12/Printable-Inventory-Template-3-1-1024x776.webp' },
         { name: 'IT Asset Records', url: 'https://www.apinsurance.co.uk/wp-content/uploads/2014/09/Asset-Register.png' },
-        { name: 'Maintenance Logs', url: 'https://www.onupkeep.com/images/raster/learning/maintenance-tools/equipment-maintenance-log.jpg?cbh=68e9e6f3f1a21c4b6f6242a2ca47588b
-        // ' },
+        { name: 'Maintenance Logs', url: 'https://www.onupkeep.com/images/raster/learning/maintenance-tools/equipment-maintenance-log.jpg?cbh=68e9e6f3f1a21c4b6f6242a2ca47588b' },
         { name: 'Security Protocols', url: 'https://templatelab.com/wp-content/uploads/2018/05/Security-Policy-32.jpg' }
       ]
     }
