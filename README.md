@@ -11,6 +11,12 @@ WorkHive is an AI-powered office seat planning and management system designed to
 - **Admin & Employee Dashboards** – Separate portals for managing seating, projects, and job applications.
 - **Energy Optimization (Optional)** – Predicts power usage based on occupancy trends.
 
+  ### **Demo**  
+🔗 [Live Demo of AgroSphere](https://workhiveapplication.netlify.app/)   
+
+---
+
+
 ## Tech Stack
 - **Frontend:** React.js / Next.js
 - **Backend:** Node.js + Express / FastAPI (Python)
@@ -24,7 +30,7 @@ WorkHive is an AI-powered office seat planning and management system designed to
 
 ### Clone the Repository
 ```sh
-git clone https://github.com/yourusername/WorkHive.git
+git clone https://github.com/MonishRaman/WorkHive.git
 cd WorkHive
 ```
 
@@ -94,7 +100,7 @@ This project is licensed under the MIT License.
 ---
 
 ## Contact
-For any queries or collaboration, reach out at [your-email@example.com].
+For any queries or collaboration, reach out at [monishr608@gmail.com].
 
 ---
 
