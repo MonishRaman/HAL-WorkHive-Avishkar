@@ -303,25 +303,258 @@ const mockJobPositions: JobPosition[] = [
 
 const mockMeetingRooms: MeetingRoom[] = [
   {
-    id: '1',
-    name: 'Innovate Hub',
-    capacity: 12,
-    floor: 1,
-    isAvailable: true
+    "id": "1",
+    "name": "Innovate Hub",
+    "capacity": 12,
+    "floor": 1,
+    "isAvailable": true
   },
+  {
+    "id": "2",
+    "name": "Tech Den",
+    "capacity": 8,
+    "floor": 1,
+    "isAvailable": false
+  },
+  {
+    "id": "3",
+    "name": "Vision Room",
+    "capacity": 15,
+    "floor": 2,
+    "isAvailable": true
+  },
+  {
+    "id": "4",
+    "name": "Collaboration Zone",
+    "capacity": 10,
+    "floor": 2,
+    "isAvailable": true
+  },
+  {
+    "id": "5",
+    "name": "Creative Lab",
+    "capacity": 6,
+    "floor": 3,
+    "isAvailable": true
+  },
+  {
+    "id": "6",
+    "name": "Strategy Suite",
+    "capacity": 14,
+    "floor": 3,
+    "isAvailable": false
+  },
+  {
+    "id": "7",
+    "name": "Productivity Pod",
+    "capacity": 20,
+    "floor": 4,
+    "isAvailable": true
+  },
+  {
+    "id": "8",
+    "name": "Innovation Hall",
+    "capacity": 30,
+    "floor": 4,
+    "isAvailable": true
+  },
+  {
+    "id": "9",
+    "name": "Tech Junction",
+    "capacity": 12,
+    "floor": 5,
+    "isAvailable": false
+  },
+  {
+    "id": "10",
+    "name": "Team Hub",
+    "capacity": 16,
+    "floor": 5,
+    "isAvailable": true
+  },
+  {
+    "id": "11",
+    "name": "Creative Space",
+    "capacity": 10,
+    "floor": 6,
+    "isAvailable": true
+  },
+  {
+    "id": "12",
+    "name": "Innovation Center",
+    "capacity": 18,
+    "floor": 6,
+    "isAvailable": true
+  },
+  {
+    "id": "13",
+    "name": "Visionary Room",
+    "capacity": 8,
+    "floor": 7,
+    "isAvailable": false
+  },
+  {
+    "id": "14",
+    "name": "Collab Space",
+    "capacity": 14,
+    "floor": 7,
+    "isAvailable": true
+  },
+  {
+    "id": "15",
+    "name": "Growth Room",
+    "capacity": 25,
+    "floor": 8,
+    "isAvailable": true
+  }
   // Add more rooms...
 ];
 
 const mockSeats: Seat[] = [
   {
-    id: '1',
-    number: 'A101',
-    floor: 1,
-    department: 'Development',
-    isAssigned: true,
-    assignedTo: '1',
-    status: 'occupied'
+    "id": "1",
+    "number": "A101",
+    "floor": 1,
+    "department": "Development",
+    "isAssigned": true,
+    "assignedTo": "1",
+    "status": "occupied"
   },
+  {
+    "id": "2",
+    "number": "A102",
+    "floor": 1,
+    "department": "Development",
+    "isAssigned": false,
+    "assignedTo": null,
+    "status": "available"
+  },
+  {
+    "id": "3",
+    "number": "A103",
+    "floor": 1,
+    "department": "HR",
+    "isAssigned": true,
+    "assignedTo": "2",
+    "status": "occupied"
+  },
+  {
+    "id": "4",
+    "number": "A104",
+    "floor": 1,
+    "department": "HR",
+    "isAssigned": false,
+    "assignedTo": null,
+    "status": "available"
+  },
+  {
+    "id": "5",
+    "number": "B101",
+    "floor": 2,
+    "department": "Sales",
+    "isAssigned": true,
+    "assignedTo": "3",
+    "status": "occupied"
+  },
+  {
+    "id": "6",
+    "number": "B102",
+    "floor": 2,
+    "department": "Sales",
+    "isAssigned": false,
+    "assignedTo": null,
+    "status": "available"
+  },
+  {
+    "id": "7",
+    "number": "B103",
+    "floor": 2,
+    "department": "Marketing",
+    "isAssigned": true,
+    "assignedTo": "4",
+    "status": "occupied"
+  },
+  {
+    "id": "8",
+    "number": "B104",
+    "floor": 2,
+    "department": "Marketing",
+    "isAssigned": false,
+    "assignedTo": null,
+    "status": "available"
+  },
+  {
+    "id": "9",
+    "number": "C101",
+    "floor": 3,
+    "department": "Finance",
+    "isAssigned": true,
+    "assignedTo": "5",
+    "status": "occupied"
+  },
+  {
+    "id": "10",
+    "number": "C102",
+    "floor": 3,
+    "department": "Finance",
+    "isAssigned": false,
+    "assignedTo": null,
+    "status": "available"
+  },
+  {
+    "id": "11",
+    "number": "C103",
+    "floor": 3,
+    "department": "IT Support",
+    "isAssigned": true,
+    "assignedTo": "6",
+    "status": "occupied"
+  },
+  {
+    "id": "12",
+    "number": "C104",
+    "floor": 3,
+    "department": "IT Support",
+    "isAssigned": false,
+    "assignedTo": null,
+    "status": "available"
+  },
+  {
+    "id": "13",
+    "number": "D101",
+    "floor": 4,
+    "department": "Customer Service",
+    "isAssigned": true,
+    "assignedTo": "7",
+    "status": "occupied"
+  },
+  {
+    "id": "14",
+    "number": "D102",
+    "floor": 4,
+    "department": "Customer Service",
+    "isAssigned": false,
+    "assignedTo": null,
+    "status": "available"
+  },
+  {
+    "id": "15",
+    "number": "D103",
+    "floor": 4,
+    "department": "Legal",
+    "isAssigned": true,
+    "assignedTo": "8",
+    "status": "occupied"
+  },
+  {
+    "id": "16",
+    "number": "D103",
+    "floor": 4,
+    "department": "Legal",
+    "isAssigned": true,
+    "assignedTo": "8",
+    "status": "available"
+  }
   // Add more seats...
 ];
 
