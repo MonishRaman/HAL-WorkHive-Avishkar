@@ -28,7 +28,7 @@ WorkHive is an AI-powered office seat planning and management system designed to
 
 ### Clone the Repository
 ```sh
-git clone https://github.com/MonishRaman/WorkHive.git
+git clone https://github.com/MonishRaman/HAL-WorkHive-Avishkar.git
 cd WorkHive
 ```
 
