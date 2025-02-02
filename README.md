@@ -106,7 +106,8 @@ For any queries or collaboration, reach out at [monishr608@gmail.com].
 Here are some sample screenshots to help you visualize the WorkHive interface:
 
 ### Admin Dashboard
-![Admin Dashboard]([https://link-to-image.com](https://github.com/user-attachments/assets/bb8868b2-3ed4-4e90-8d68-b10b0c635516))
+![Admin Dashboard]
+https://link-to-image.com](https://github.com/user-attachments/assets/bb8868b2-3ed4-4e90-8d68-b10b0c635516
 
 
 ### Employee Dashboard
