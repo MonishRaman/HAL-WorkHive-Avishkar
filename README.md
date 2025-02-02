@@ -106,17 +106,14 @@ For any queries or collaboration, reach out at [monishr608@gmail.com].
 Here are some sample screenshots to help you visualize the WorkHive interface:
 
 ### Admin Dashboard
-![Admin Dashboard]
-https://link-to-image.com](https://github.com/user-attachments/assets/bb8868b2-3ed4-4e90-8d68-b10b0c635516
-
+![Admin Dashboard](![image](https://github.com/user-attachments/assets/fdfeb547-803e-4e48-82e7-fc7d0eb45fe5)
+)
 
 ### Employee Dashboard
-![Employee Dashboard](![image](https://github.com/user-attachments/assets/37b31205-addc-4ab4-90fc-2c353be9077d)
-)
+![Employee Dashboard](https://link-to-image.com)
 
 ### Interactive Floor Plan
-![Floor Plan](![image](https://github.com/user-attachments/assets/f2c2fd66-8eac-48a3-84e9-04c487119278)
-)
+![Floor Plan](https://link-to-image.com)
 
 ---
 
