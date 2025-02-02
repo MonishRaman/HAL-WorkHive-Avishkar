@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { LayoutGrid, Users, Settings, Video } from 'lucide-react';
 import * as d3 from 'd3';
+import PowerManagement from './PowerManagement'; // Adjust the path as necessary
 
 // Mock data for departments and seats
 const departments = [
@@ -199,7 +200,7 @@ export const OfficeLayoutPage: React.FC = () => {
   const tabs = [
     { id: 'layout', label: 'Seat Layout', icon: LayoutGrid },
     { id: 'assignment', label: 'Seat Assignment', icon: Users },
-    { id: 'management', label: 'Seat Management', icon: Settings },
+    { id: 'management', label: 'Power Management', icon: Settings },
     { id: 'meetings', label: 'Meeting Rooms', icon: Video }
   ];
 
@@ -333,6 +334,10 @@ export const OfficeLayoutPage: React.FC = () => {
           <div className="h-[100vh] w-full">
             <svg ref={svgRef}></svg> {/* D3.js Floor Layout */}
           </div>
+        )}
+
+        {activeTab === 'management' && (
+          <PowerManagement />
         )}
 
         {activeTab === 'meetings' && (
