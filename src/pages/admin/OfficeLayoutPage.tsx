@@ -1,13 +1,199 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { LayoutGrid, Users, Settings, Video } from 'lucide-react';
-import { useDashboardStore } from '../../store/dashboardStore';
 import * as d3 from 'd3';
 
+// Mock data for departments and seats
+const departments = [
+  { id: 'development', name: 'Development', seats: Array.from({ length: 60 }, (_, i) => ({ id: `dev-${i + 1}`, number: i + 1, status: 'available' })) },
+  { id: 'hr', name: 'HR', seats: Array.from({ length: 60 }, (_, i) => ({ id: `hr-${i + 1}`, number: i + 1, status: 'available' })) },
+  { id: 'sales', name: 'Sales', seats: Array.from({ length: 60 }, (_, i) => ({ id: `sales-${i + 1}`, number: i + 1, status: 'available' })) },
+  { id: 'marketing', name: 'Marketing', seats: Array.from({ length: 60 }, (_, i) => ({ id: `marketing-${i + 1}`, number: i + 1, status: 'available' })) },
+  { id: 'customer-service', name: 'Customer Service', seats: Array.from({ length: 60 }, (_, i) => ({ id: `cs-${i + 1}`, number: i + 1, status: 'available' })) },
+  { id: 'legal', name: 'Legal', seats: Array.from({ length: 60 }, (_, i) => ({ id: `legal-${i + 1}`, number: i + 1, status: 'available' })) },
+];
+
+// Mock data for meeting rooms
+const meetingRooms = [
+  {
+    id: '1',
+    name: 'Innovate Hub',
+    capacity: 12,
+    floor: 1,
+    isAvailable: true,
+    seating: [
+      { id: 'M1-1', status: 'available' },
+      { id: 'M1-2', status: 'occupied', occupiedBy: 'Sarah Johnson' },
+      { id: 'M1-3', status: 'available' },
+      { id: 'M1-4', status: 'available' },
+      { id: 'M1-5', status: 'occupied', occupiedBy: 'Emily Davis' },
+      { id: 'M1-6', status: 'available' },
+      { id: 'M1-7', status: 'available' },
+      { id: 'M1-8', status: 'occupied', occupiedBy: 'David Wilson' },
+      { id: 'M1-9', status: 'available' },
+      { id: 'M1-10', status: 'available' },
+      { id: 'M1-11', status: 'available' },
+      { id: 'M1-12', status: 'available' }
+    ]
+  },
+  {
+    id: '2',
+    name: 'Brainstorm Zone',
+    capacity: 8,
+    floor: 1,
+    isAvailable: false,
+    seating: [
+      { id: 'M2-1', status: 'occupied', occupiedBy: 'Michael Chen' },
+      { id: 'M2-2', status: 'occupied', occupiedBy: 'John Smith' },
+      { id: 'M2-3', status: 'available' },
+      { id: 'M2-4', status: 'available' },
+      { id: 'M2-5', status: 'occupied', occupiedBy: 'Laura Brown' },
+      { id: 'M2-6', status: 'available' },
+      { id: 'M2-7', status: 'available' },
+      { id: 'M2-8', status: 'available' }
+    ]
+  },
+  {
+    id: '3',
+    name: 'Focus Room',
+    capacity: 4,
+    floor: 2,
+    isAvailable: true,
+    seating: [
+      { id: 'M3-1', status: 'available' },
+      { id: 'M3-2', status: 'available' },
+      { id: 'M3-3', status: 'available' },
+      { id: 'M3-4', status: 'available' }
+    ]
+  },
+  {
+    id: '4',
+    name: 'Creative Corner',
+    capacity: 6,
+    floor: 2,
+    isAvailable: true,
+    seating: [
+      { id: 'M4-1', status: 'available' },
+      { id: 'M4-2', status: 'available' },
+      { id: 'M4-3', status: 'available' },
+      { id: 'M4-4', status: 'available' },
+      { id: 'M4-5', status: 'available' },
+      { id: 'M4-6', status: 'available' }
+    ]
+  },
+  {
+    id: '5',
+    name: 'Collaboration Station',
+    capacity: 10,
+    floor: 3,
+    isAvailable: false,
+    seating: [
+      { id: 'M5-1', status: 'occupied', occupiedBy: 'Emma White' },
+      { id: 'M5-2', status: 'occupied', occupiedBy: 'James Taylor' },
+      { id: 'M5-3', status: 'available' },
+      { id: 'M5-4', status: 'available' },
+      { id: 'M5-5', status: 'occupied', occupiedBy: 'Olivia Martinez' },
+      { id: 'M5-6', status: 'available' },
+      { id: 'M5-7', status: 'available' },
+      { id: 'M5-8', status: 'available' },
+      { id: 'M5-9', status: 'available' },
+      { id: 'M5-10', status: 'available' }
+    ]
+  },
+  {
+    id: '6',
+    name: 'Think Tank',
+    capacity: 6,
+    floor: 3,
+    isAvailable: true,
+    seating: [
+      { id: 'M6-1', status: 'available' },
+      { id: 'M6-2', status: 'available' },
+      { id: 'M6-3', status: 'available' },
+      { id: 'M6-4', status: 'available' },
+      { id: 'M6-5', status: 'available' },
+      { id: 'M6-6', status: 'available' }
+    ]
+  },
+  {
+    id: '7',
+    name: 'Strategy Suite',
+    capacity: 8,
+    floor: 4,
+    isAvailable: true,
+    seating: [
+      { id: 'M7-1', status: 'available' },
+      { id: 'M7-2', status: 'available' },
+      { id: 'M7-3', status: 'available' },
+      { id: 'M7-4', status: 'available' },
+      { id: 'M7-5', status: 'available' },
+      { id: 'M7-6', status: 'available' },
+      { id: 'M7-7', status: 'available' },
+      { id: 'M7-8', status: 'available' }
+    ]
+  },
+  {
+    id: '8',
+    name: 'Idea Lab',
+    capacity: 6,
+    floor: 4,
+    isAvailable: false,
+    seating: [
+      { id: 'M8-1', status: 'occupied', occupiedBy: 'Daniel Lee' },
+      { id: 'M8-2', status: 'occupied', occupiedBy: 'Sophia Garcia' },
+      { id: 'M8-3', status: 'available' },
+      { id: 'M8-4', status: 'available' },
+      { id: 'M8-5', status: 'available' },
+      { id: 'M8-6', status: 'available' }
+    ]
+  },
+  {
+    id: '9',
+    name: 'Visionary Venue',
+    capacity: 10,
+    floor: 5,
+    isAvailable: true,
+    seating: [
+      { id: 'M9-1', status: 'available' },
+      { id: 'M9-2', status: 'available' },
+      { id: 'M9-3', status: 'available' },
+      { id: 'M9-4', status: 'available' },
+      { id: 'M9-5', status: 'available' },
+      { id: 'M9-6', status: 'available' },
+      { id: 'M9-7', status: 'available' },
+      { id: 'M9-8', status: 'available' },
+      { id: 'M9-9', status: 'available' },
+      { id: 'M9-10', status: 'available' }
+    ]
+  },
+  {
+    id: '10',
+    name: 'Inspiration Lounge',
+    capacity: 12,
+    floor: 5,
+    isAvailable: false,
+    seating: [
+      { id: 'M10-1', status: 'occupied', occupiedBy: 'Ethan Moore' },
+      { id: 'M10-2', status: 'occupied', occupiedBy: 'Ava Anderson' },
+      { id: 'M10-3', status: 'available' },
+      { id: 'M10-4', status: 'available' },
+      { id: 'M10-5', status: 'available' },
+      { id: 'M10-6', status: 'available' },
+      { id: 'M10-7', status: 'available' },
+      { id: 'M10-8', status: 'available' },
+      { id: 'M10-9', status: 'available' },
+      { id: 'M10-10', status: 'available' },
+      { id: 'M10-11', status: 'available' },
+      { id: 'M10-12', status: 'available' }
+    ]
+  }
+];
+
 export const OfficeLayoutPage: React.FC = () => {
-  const { seats, meetingRooms } = useDashboardStore();
   const [activeTab, setActiveTab] = useState<'layout' | 'assignment' | 'management' | 'meetings'>('layout');
-  const [seatCount, setSeatCount] = useState<{ booked: number; empty: number }>({ booked: 0, empty: 0 });
+  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(null);
+  const [seatCount, setSeatCount] = useState<{ booked: number; available: number }>({ booked: 0, available: 60 });
+  const [departmentsData, setDepartmentsData] = useState(departments);
   const svgRef = useRef<SVGSVGElement>(null);
 
   const tabs = [
@@ -18,33 +204,33 @@ export const OfficeLayoutPage: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (activeTab === 'assignment' && svgRef.current) {
-      // Render floor seating structure with D3.js
-      renderSeatAssignment(seats);
+    if (activeTab === 'assignment' && svgRef.current && selectedDepartment) {
+      const department = departmentsData.find(dept => dept.id === selectedDepartment);
+      if (department) {
+        renderSeatAssignment(department.seats);
+      }
     }
-  }, [activeTab, seats]);
+  }, [activeTab, selectedDepartment, departmentsData]);
 
   const renderSeatAssignment = (seats: any[]) => {
     const svg = d3.select(svgRef.current);
     svg.selectAll('*').remove(); // Clear any previous content
 
     const width = window.innerWidth; // Full window width
-    const height = window.innerHeight - 100; // Full window height minus some space for other UI elements
+    const height = window.innerHeight - 200; // Full window height minus some space for other UI elements
 
     // Set up the SVG container
     svg.attr('width', width).attr('height', height);
 
-    const seatWidth = 60;
-    const seatHeight = 40;
-    const rows = 10; // Number of rows
-    const cols = 12; // Number of columns
-
-    const seatData = seats.filter(seat => seat.status === 'available' || seat.status === 'occupied');
+    const seatWidth = 80; // Bigger seats
+    const seatHeight = 60;
+    const rows = 6; // Number of rows
+    const cols = 10; // Number of columns
 
     // Create seat elements based on available data
     const seatGroups = svg
       .selectAll('.seat')
-      .data(seatData)
+      .data(seats)
       .enter()
       .append('g')
       .attr('class', 'seat')
@@ -53,41 +239,33 @@ export const OfficeLayoutPage: React.FC = () => {
         const y = Math.floor(i / cols) * (seatHeight + 20);
         return `translate(${x}, ${y})`;
       })
-      .on('mouseover', function (event, d) {
-        d3.select(this).select('rect').attr('stroke', 'black').attr('stroke-width', 2);
-      })
-      .on('mouseout', function (event, d) {
-        d3.select(this).select('rect').attr('stroke', 'none');
-      })
       .on('click', function (event, d) {
-        // On seat click, update the seat count based on its status
-        if (d.status === 'occupied') {
+        if (d.status === 'available') {
+          // Update seat status to booked
+          const updatedSeats = seats.map(seat => (seat.id === d.id ? { ...seat, status: 'booked' } : seat));
+          const updatedDepartments = departmentsData.map(dept =>
+            dept.id === selectedDepartment ? { ...dept, seats: updatedSeats } : dept
+          );
+          setDepartmentsData(updatedDepartments);
+
+          // Update seat counts
           setSeatCount(prevState => ({
-            ...prevState,
             booked: prevState.booked + 1,
-            empty: prevState.empty
-          }));
-        } else if (d.status === 'available') {
-          setSeatCount(prevState => ({
-            ...prevState,
-            booked: prevState.booked,
-            empty: prevState.empty + 1
+            available: prevState.available - 1,
           }));
         }
       });
 
-    // Draw seats as rounded rectangles for a more realistic look
+    // Draw seats as rounded rectangles
     seatGroups
       .append('rect')
       .attr('width', seatWidth)
       .attr('height', seatHeight)
       .attr('rx', 8)  // Rounded corners
       .attr('ry', 8)
-      .attr('fill', d => {
-        if (d.status === 'available') return '#6BBF4D'; // Green for available
-        if (d.status === 'occupied') return '#FF5733'; // Red for occupied
-        return '#FFD700'; // Yellow for unassigned or unknown
-      });
+      .attr('fill', d => (d.status === 'available' ? '#6BBF4D' : '#FF5733')) // Green for available, Red for booked
+      .attr('stroke', '#000')
+      .attr('stroke-width', 1);
 
     // Add seat numbers
     seatGroups
@@ -99,27 +277,15 @@ export const OfficeLayoutPage: React.FC = () => {
       .attr('fill', 'white')
       .attr('font-size', '12px')
       .text(d => d.number);
+  };
 
-    // Optional: Add department labels on top of seats
-    seatGroups
-      .append('text')
-      .attr('x', seatWidth / 2)
-      .attr('y', 5)
-      .attr('dy', '.35em')
-      .attr('text-anchor', 'middle')
-      .attr('fill', 'black')
-      .attr('font-size', '10px')
-      .text(d => d.department);
-
-    // Optional: Draw department separators or walls
-    svg
-      .append('line')
-      .attr('x1', 0)
-      .attr('x2', width)
-      .attr('y1', rows * (seatHeight + 20) - 10)
-      .attr('y2', rows * (seatHeight + 20) - 10)
-      .attr('stroke', '#000')
-      .attr('stroke-width', 2);
+  const handleDepartmentClick = (departmentId: string) => {
+    setSelectedDepartment(departmentId);
+    const department = departmentsData.find(dept => dept.id === departmentId);
+    if (department) {
+      const bookedSeats = department.seats.filter(seat => seat.status === 'booked').length;
+      setSeatCount({ booked: bookedSeats, available: 60 - bookedSeats });
+    }
   };
 
   return (
@@ -148,51 +314,63 @@ export const OfficeLayoutPage: React.FC = () => {
 
       <div className="bg-white rounded-lg p-6 shadow-lg">
         {activeTab === 'layout' && (
-          <div className="grid grid-cols-8 gap-4">
-            {seats.map(seat => (
+          <div className="grid grid-cols-3 gap-4">
+            {departments.map(department => (
               <motion.div
-                key={seat.id}
+                key={department.id}
                 whileHover={{ scale: 1.05 }}
-                className={`p-4 rounded-lg text-center cursor-pointer ${
-                  seat.status === 'available'
-                    ? 'bg-green-100 text-green-700'
-                    : seat.status === 'occupied'
-                    ? 'bg-red-100 text-red-700'
-                    : 'bg-yellow-100 text-yellow-700'
-                }`}
+                className="p-6 rounded-lg border border-gray-200 cursor-pointer"
+                onClick={() => handleDepartmentClick(department.id)}
               >
-                <p className="font-semibold">{seat.number}</p>
-                <p className="text-sm">{seat.department}</p>
+                <h3 className="text-lg font-semibold mb-2">{department.name}</h3>
+                <p className="text-sm text-gray-600">Total Seats: 60</p>
               </motion.div>
             ))}
           </div>
         )}
 
-        {activeTab === 'assignment' && (
+        {activeTab === 'assignment' && selectedDepartment && (
           <div className="h-[100vh] w-full">
             <svg ref={svgRef}></svg> {/* D3.js Floor Layout */}
           </div>
         )}
 
         {activeTab === 'meetings' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="space-y-6">
             {meetingRooms.map(room => (
-              <motion.div
-                key={room.id}
-                whileHover={{ scale: 1.02 }}
-                className="p-6 rounded-lg border border-gray-200"
-              >
-                <h3 className="text-lg font-semibold mb-2">{room.name}</h3>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <p>Capacity: {room.capacity} people</p>
-                  <p>Floor: {room.floor}</p>
-                  <p className={`font-semibold ${
-                    room.isAvailable ? 'text-green-600' : 'text-red-600'
+              <div key={room.id} className="border rounded-lg p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-lg font-semibold">{room.name}</h3>
+                    <p className="text-sm text-gray-600">
+                      Capacity: {room.capacity} people | Floor {room.floor}
+                    </p>
+                  </div>
+                  <span className={`px-3 py-1 rounded-full text-sm ${
+                    room.isAvailable ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'
                   }`}>
                     {room.isAvailable ? 'Available' : 'In Use'}
-                  </p>
+                  </span>
                 </div>
-              </motion.div>
+
+                <div className="grid grid-cols-4 gap-4 mt-4">
+                  {room.seating?.map(seat => (
+                    <div
+                      key={seat.id}
+                      className={`p-3 rounded-lg text-center ${
+                        seat.status === 'available'
+                          ? 'bg-green-100 text-green-600'
+                          : 'bg-red-100 text-red-600'
+                      }`}
+                    >
+                      <p className="font-medium">{seat.id}</p>
+                      <p className="text-sm">
+                        {seat.status === 'occupied' ? seat.occupiedBy : 'Available'}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         )}
@@ -200,7 +378,7 @@ export const OfficeLayoutPage: React.FC = () => {
 
       <div className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white py-2">
         <p className="text-center">
-          Booked Seats: {seatCount.booked} | Empty Seats: {seatCount.empty}
+          Booked Seats: {seatCount.booked} | Available Seats: {seatCount.available}
         </p>
       </div>
     </div>
