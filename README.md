@@ -34,7 +34,7 @@ cd HAL-WorkHive-Avishkar
 
 ### Setup Frontend
 ```sh
-cd frontend
+
 npm install
 npm run dev
 ```
@@ -46,12 +46,7 @@ npm install
 npm run dev
 ```
 
-### Setup Backend (FastAPI - Python)
-```sh
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
+
 
 ### Database Setup (PostgreSQL)
 ```sql
