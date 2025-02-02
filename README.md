@@ -108,6 +108,7 @@ Here are some sample screenshots to help you visualize the WorkHive interface:
 ### Admin Dashboard
 ![Admin Dashboard](![image](https://github.com/user-attachments/assets/fdfeb547-803e-4e48-82e7-fc7d0eb45fe5)
 )
+![image](https://github.com/user-attachments/assets/53543601-66a8-4f4e-a7ee-a598449ca9f9)
 
 ### Employee Dashboard
 ![Employee Dashboard](https://link-to-image.com)
