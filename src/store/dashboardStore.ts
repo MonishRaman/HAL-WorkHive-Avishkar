@@ -298,6 +298,56 @@ const mockJobPositions: JobPosition[] = [
     type: 'full-time',
     postedDate: '2024-02-15'
   },
+
+  {
+    id: '2',
+    title: 'UI/UX Designer',
+    department: 'Design',
+    experience: '1+ years',
+    location: 'Remote',
+    type: 'part-time',
+    postedDate: '2025-02-15'
+  },
+
+  {
+    id: '3',
+    title: 'Cyber Security Engineer',
+    department: 'IT Security',
+    experience: '4+ years',
+    location: 'Remote',
+    type: 'full-time',
+    postedDate: '2025-03-05'
+  },
+
+  {
+    id: '4',
+    title: 'Backend Developer',
+    department: 'Engineering',
+    experience: '3+ years',
+    location: 'Remote',
+    type: 'contract',
+    postedDate: '2025-02-28'
+  },
+
+  {
+    id: '5',
+    title: 'Finance Analyst',
+    department: 'Finance',
+    experience: '2+ years',
+    location: 'Remote',
+    type: 'part-time',
+    postedDate: '2025-03-01'
+  },
+
+  {
+    id: '6',
+    title: 'DevOps Engineer',
+    department: 'DevOps',
+    experience: '5+ years',
+    location: 'Remote',
+    type: 'full-time',
+    postedDate: '2025-02-20'
+  },
   // Add more positions...
 ];
 
