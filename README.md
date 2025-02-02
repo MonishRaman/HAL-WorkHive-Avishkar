@@ -17,8 +17,8 @@ WorkHive is an AI-powered office seat planning and management system designed to
 
 ## Tech Stack
 - **Frontend:** React.js / Next.js
-- **Backend:** Node.js + Express / FastAPI (Python)
-- **Database:** PostgreSQL / Firebase
+- **Backend:** Node.js + Express 
+- **Database:** PostgreSQL 
 - **AI Model:** Python (Scikit-learn) for seat allocation
 - **Visualization:** D3.js for interactive office layout.
 
