@@ -137,7 +137,7 @@ const mockEmployees: Employee[] = [
 const mockProjects: Project[] = [
   {
     id: '1',
-    name: 'NextGen Platform',
+    name: 'Project Nexus',
     description: 'Building the next generation platform for enterprise solutions',
     status: 'ongoing',
     projectHead: {
@@ -152,7 +152,7 @@ const mockProjects: Project[] = [
   },
   {
     id: '2',
-    name: 'NextGen Platform',
+    name: 'Velocity Ops',
     description: 'Building the next generation platform for enterprise solutions',
     status: 'completed',
     projectHead: {
@@ -163,11 +163,11 @@ const mockProjects: Project[] = [
     team: mockEmployees.slice(0, 3),
     startDate: '2024-01-01',
     endDate: '2024-06-30',
-    progress: 45
+    progress: 60
   },
   {
     id: '3',
-    name: 'NextGen Platform',
+    name: 'Optimus Task',
     description: 'Building the next generation platform for enterprise solutions',
     status: 'ongoing',
     projectHead: {
@@ -178,11 +178,11 @@ const mockProjects: Project[] = [
     team: mockEmployees.slice(0, 3),
     startDate: '2024-01-01',
     endDate: '2024-06-30',
-    progress: 45
+    progress: 22
   },
   {
     id: '4',
-    name: 'NextGen Platform',
+    name: 'Horizon Shift',
     description: 'Building the next generation platform for enterprise solutions',
     status: 'completed',
     projectHead: {
@@ -193,11 +193,11 @@ const mockProjects: Project[] = [
     team: mockEmployees.slice(0, 3),
     startDate: '2024-01-01',
     endDate: '2024-06-30',
-    progress: 45
+    progress: 77
   },
   {
     id: '5',
-    name: 'NextGen Platform',
+    name: 'Nova Flow',
     description: 'Building the next generation platform for enterprise solutions',
     status: 'ongoing',
     projectHead: {
@@ -208,11 +208,11 @@ const mockProjects: Project[] = [
     team: mockEmployees.slice(0, 3),
     startDate: '2024-01-01',
     endDate: '2024-06-30',
-    progress: 45
+    progress: 80
   },
   {
     id: '6',
-    name: 'NextGen Platform',
+    name: 'Quantum Sync',
     description: 'Building the next generation platform for enterprise solutions',
     status: 'completed',
     projectHead: {
@@ -223,11 +223,11 @@ const mockProjects: Project[] = [
     team: mockEmployees.slice(0, 3),
     startDate: '2024-01-01',
     endDate: '2024-06-30',
-    progress: 45
+    progress: 12
   },
   {
     id: '7',
-    name: 'NextGen Platform',
+    name: 'ElevateX',
     description: 'Building the next generation platform for enterprise solutions',
     status: 'ongoing',
     projectHead: {
@@ -238,11 +238,11 @@ const mockProjects: Project[] = [
     team: mockEmployees.slice(0, 3),
     startDate: '2024-01-01',
     endDate: '2024-06-30',
-    progress: 45
+    progress: 62
   },
   {
     id: '8',
-    name: 'NextGen Platform',
+    name: 'Echo Matrix',
     description: 'Building the next generation platform for enterprise solutions',
     status: 'completed',
     projectHead: {
@@ -253,11 +253,11 @@ const mockProjects: Project[] = [
     team: mockEmployees.slice(0, 3),
     startDate: '2024-01-01',
     endDate: '2024-06-30',
-    progress: 45
+    progress: 50
   },
   {
     id: '9',
-    name: 'NextGen Platform',
+    name: 'NAlpha Grid',
     description: 'Building the next generation platform for enterprise solutions',
     status: 'ongoing',
     projectHead: {
@@ -268,11 +268,11 @@ const mockProjects: Project[] = [
     team: mockEmployees.slice(0, 3),
     startDate: '2024-01-01',
     endDate: '2024-06-30',
-    progress: 45
+    progress: 29
   },
   {
     id: '10',
-    name: 'NextGen Platform',
+    name: 'Arcadia Blueprint',
     description: 'Building the next generation platform for enterprise solutions',
     status: 'completed',
     projectHead: {
@@ -283,7 +283,7 @@ const mockProjects: Project[] = [
     team: mockEmployees.slice(0, 3),
     startDate: '2024-01-01',
     endDate: '2024-06-30',
-    progress: 45
+    progress: 97
   },
   // Add more projects...
 ];
